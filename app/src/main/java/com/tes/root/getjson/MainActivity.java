@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.squareup.okhttp.MediaType;
@@ -17,12 +18,20 @@ import java.io.IOException;
 //http://square.github.io/okhttp/
 
 public class MainActivity extends AppCompatActivity {
+
+
+
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
-    final String strURL = "https://sandbox.savanna.zebra.com/v2/relativelocationing/calculaterelativelocation";
-    final String strBodyJson = "{\"scan\":\"049200045701\",\"content\":{ \"BarcodeScanUtc\":\"2018-10-07T23:58:25.039Z\",\"Device\":\"TC75\",\"ScanResults\":[{\"BSSID\":\"20:4E:7F:AC:8E:9F\",\"RecUtc\":\"2018-10-07T23:46:28.937Z\",\"SignalStrength\":-65,\"SignalType\":1}],\"Symbology\":\"UPCA\",\"Value\":\"049200045701\",\"Version\":\"1.0.0.38-master.54d32d3\",\"Latitude\":42.1866674,\"Longitude\":-117.31623414323549}}";
-    final String strApikey = "replace me with your apikey";
+    final String strURL = "https://partnerapi.igloohome.co/v1/locks/IGB2-C2A4P2_69ac6f/lockcodes";
+    final String strApikey = "KAMISPACE-7det1dtlI05Ya7lHWGV90sQn62AjeSiq";
+    final String strBodyJson = "{\n" +
+            "\"description\":\"testing\",\n" +
+            "\"startDate\":\"2019-12-12T12:00:00\", \n" +
+            "\"durationCode\": 1 \n" +
+            "}\n";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         Request request = new Request.Builder()
                                 .url(strURL)
                                 .addHeader("Content_Type","application/json")
-                                .addHeader("apikey",strApikey)
+                                .addHeader("X-IGLOOHOME-APIKEY",strApikey)
                                 .post(body)
                                 .build();
 
@@ -62,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    protected void onPostExecute(Object o) {
-                        textView.setText(o.toString());
+                    protected void onPostExecute(Object code) {
+                        textView.setText(code.toString());
                     }
                 }.execute();
             }
