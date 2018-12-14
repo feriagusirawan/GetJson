@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.TextView;
 
 import com.squareup.okhttp.MediaType;
@@ -19,6 +19,13 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
+//    private Context mContext;
+//    private Activity mActivity;
+//
+//    private CoordinatorLayout mCLayout;
+//    private Button mButtonDo;
+//    private TextView mTextView;
+//    private String mJSONURLString = "http://pastebin.com/raw/Em972E5s";
 
 
     public static final MediaType JSON
@@ -33,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             "}\n";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.button);
         final TextView textView = findViewById(R.id.textView);
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
